@@ -1,2 +1,27 @@
 ---
 # defaults vars
+network_cidr: 10.2.0.0/16
+postfix_default_process_limit: 6
+postfix_default_destination_concurrency_limit: 5
+postfix_queue_run_delay: 20m
+postfix_default_destination_recipient_limit: 5
+postfix_smtp_destination_concurrency_limit: 5
+postfix_smtp_destination_rate_delay: 3s
+
+
+postfix_maximal_queue_lifetime: 8h
+postfix_bounce_queue_lifetime: 1h
+postfix_maximal_backoff_time: 10m
+postfix_minimal_backoff_time: 5m
+
+postfix_myhostname: smtp.example.com
+postfix_alias_maps: hash:/etc/aliases
+postfix_alias_database: hash:/etc/aliases
+postfix_mydestination: "{{ ansible_hostname }}, localhost.localdomain, localhost"
+postfix_relayhost: 
+postfix_mynetworks: "{{ network_cidr }} 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
+postfix_mailbox_size_limit: 0
+postfix_recipient_delimiter: +
+postfix_inet_interfaces: all
+postfix_inet_protocols: all
+postfix_smtp_host_lookup: native
