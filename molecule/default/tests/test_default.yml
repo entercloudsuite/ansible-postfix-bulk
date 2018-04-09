@@ -1,24 +1,21 @@
 ---
-package:
-  postfix-bulk:
-    installed: true
+service:
+  postfix:
+    enabled: true
+    running: true
 port:
   tcp:25:
     listening: true
     ip:
       - 0.0.0.0
-service:
-  postfix-bulk:
-    enabled: true
-    running: true
 user:
-  postfix-bulk:
+  postfix:
     exists: true
     groups:
-      - postfix-bulk
+      - postfix
 group:
-  postfix-bulk:
+  postfix:
     exists: true
 process:
-  postfix-bulk:
+  master:
     running: true
