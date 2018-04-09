@@ -1,2 +1,15 @@
 ---
-# handlers file
+- name: start postfix
+  service: name=postfix state=started
+
+- name: restart postfix
+  service: name=postfix state=restarted
+
+- name: reload postfix
+  service: name=postfix state=reloaded
+
+- name: stop postfix
+  service: name=postfix state=stopped
+
+- name: enabled postfix
+  service: name=postfix enabled=yes

@@ -1,2 +1,12 @@
 ---
-# tasks
+
+- name: Install postfix
+  apt: name=postfix state=present
+
+- name: Copy configuration to the machine
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+     - { src: "main.cf.j2", dest: "/etc/postfix/main.cf" }
+
+- name: Restart postfix
+  service: name=postfix state=restarted
